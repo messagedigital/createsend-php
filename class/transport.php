@@ -132,7 +132,7 @@ class CS_REST_CurlTransport extends CS_REST_BaseTransport {
         if(!$response && $response !== '') {
             $this->_log->log_message('Error making request with curl_error: '.curl_errno($ch),
                 get_class($this), CS_REST_LOG_ERROR);
-            trigger_error('Error making request with curl_error: '.curl_error($ch), E_USER_ERROR);
+                throw new \Exception('Error making request with curl_error: '.curl_error($ch), E_USER_ERROR);
         }
         
         list( $headers, $result ) = $this->split_and_inflate($response, $inflate_response);
